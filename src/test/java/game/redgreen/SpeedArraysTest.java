@@ -1,203 +1,395 @@
 package game.redgreen;
 
+import game.redgreen.SpeedArrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class SpeedArraysTest {
 
+    /*
+     * If light is red
+     * countLoser tests
+     */
     @Test
-    public void shouldReturnCountOfLosers() {
+    public void shouldReturnCountOfLosersRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {15, 5, 0, 0, 1, 0, 20, 2, 2};
 
         int actual = SpeedArrays.countLoser(speeds);
         int expected = 6;
-        Assertions.assertEquals(expected, actual, "Метод должен возвращать количество выбывших");
+        Assertions.assertEquals(expected, actual, "При красном свете метод должен возвращать количество выбывших");
     }
 
     @Test
-    public void shouldReturnCountOfLosersIfNoOne() {
+    public void shouldReturnCountOfLosersIfAllStayRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
         int actual = SpeedArrays.countLoser(speeds);
         int expected = 0;
-        Assertions.assertEquals(expected, actual, "Метод должен возвращать нулевое количество выбывших");
+        Assertions.assertEquals(expected, actual, "При красном свете метод должен возвращать нулевое количество выбывших");
     }
 
     @Test
-    public void shouldReturnCountOfLosersIfEveryOne() {
+    public void shouldReturnCountOfLosersIfAllMoveRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {15, 5, 1, 3, 1, 4, 20, 2, 2};
 
         int actual = SpeedArrays.countLoser(speeds);
         int expected = 9;
-        Assertions.assertEquals(expected, actual, "Метод должен возвращать количество всех игроков");
+        Assertions.assertEquals(expected, actual, "При красном свете метод должен возвращать количество всех игроков");
     }
 
     @Test
-    public void shouldReturnCountOfLosersIfFirst() {
+    public void shouldReturnCountOfLosersIfFirstMoveRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {5, 0, 0, 0, 0, 0, 0, 0, 0};
 
         int actual = SpeedArrays.countLoser(speeds);
         int expected = 1;
-        Assertions.assertEquals(expected, actual, "Метод должен возвращать количество выбывших, если выбывший первый");
+        Assertions.assertEquals(expected, actual, "При красном свете метод должен возвращать 1, если выбывший первый");
     }
 
     @Test
-    public void shouldReturnCountOfLosersIfLast() {
+    public void shouldReturnCountOfLosersIfLastMoveRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {0, 0, 0, 0, 0, 0, 0, 0, 7};
 
         int actual = SpeedArrays.countLoser(speeds);
         int expected = 1;
-        Assertions.assertEquals(expected, actual, "Метод должен возвращать количество выбывших, если выбывший последний");
+        Assertions.assertEquals(expected, actual, "При красном свете метод должен возвращать 1, если выбывший последний");
     }
 
     @Test
-    public void shouldReturnCountOfLosersIfOne() {
+    public void shouldReturnCountOfLosersIfOneMoveRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {1};
 
         int actual = SpeedArrays.countLoser(speeds);
         int expected = 1;
-        Assertions.assertEquals(expected, actual, "Метод должен возвращать 1, если игрок единственный и он выбыл");
+        Assertions.assertEquals(expected, actual, "При красном свете метод должен возвращать 1, если игрок единственный и он выбыл");
     }
 
     @Test
-    public void shouldReturnCountOfLosersIfOneWin() {
+    public void shouldReturnCountOfLosersIfOneStayRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {0};
 
         int actual = SpeedArrays.countLoser(speeds);
         int expected = 0;
-        Assertions.assertEquals(expected, actual, "Метод должен возвращать 0, если игрок единственный и он не выбыл");
+        Assertions.assertEquals(expected, actual, "При красном свете метод должен возвращать 0, если игрок единственный и он не выбыл");
     }
 
+    /*
+     * speedLosers tests
+     */
     @Test
-    public void shouldReturnLosers() {
+    public void shouldReturnLosersRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {15, 5, 0, 0, 1, 0, 20, 2, 2};
 
         int[] actual = SpeedArrays.speedLosers(speeds);
         int[] expected = {15, 5, 1, 20, 2, 2};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать скорости выбывших");
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать скорости выбывших");
     }
 
     @Test
-    public void shouldReturnLosersIfNoOne() {
+    public void shouldReturnLosersIfAllStayRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
         int[] actual = SpeedArrays.speedLosers(speeds);
         int[] expected = {};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать пустой массив скоростей выбывших");
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать пустой массив скоростей выбывших");
     }
 
     @Test
-    public void shouldReturnLosersIfEveryOne() {
+    public void shouldReturnLosersIfAllMoveRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {15, 5, 1, 3, 1, 4, 20, 2, 2};
 
         int[] actual = SpeedArrays.speedLosers(speeds);
         int[] expected = {15, 5, 1, 3, 1, 4, 20, 2, 2};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать скорости всех игроков");
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать скорости всех игроков");
     }
 
     @Test
-    public void shouldReturnLosersIfFirst() {
+    public void shouldReturnLosersIfFirstMoveRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {5, 0, 0, 0, 0, 0, 0, 0, 0};
 
         int[] actual = SpeedArrays.speedLosers(speeds);
         int[] expected = {5};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать скорости выбывших, если выбывший первый");
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать скорость выбывшего, если выбывший первый");
     }
 
     @Test
-    public void shouldReturnLosersIfLast() {
+    public void shouldReturnLosersIfLastMoveRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {0, 0, 0, 0, 0, 0, 0, 0, 7};
 
         int[] actual = SpeedArrays.speedLosers(speeds);
         int[] expected = {7};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать скорости выбывших, если выбывший последний");
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать скорость выбывшего, если выбывший последний");
     }
 
     @Test
-    public void shouldReturnLosersIfOne() {
+    public void shouldReturnLosersIfOneMoveRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {1};
 
         int[] actual = SpeedArrays.speedLosers(speeds);
         int[] expected = {1};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать массив из одной скорости, " +
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать массив из одной скорости, " +
                 "если игрок единственный и он выбыл");
     }
 
     @Test
-    public void shouldReturnLosersIfOneWin() {
+    public void shouldReturnLosersIfOneStayRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {0};
 
         int[] actual = SpeedArrays.speedLosers(speeds);
         int[] expected = {};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать пустой массив, " +
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать пустой массив, " +
                 "если игрок единственный и он не выбыл");
     }
 
+    /*
+     * speedWinners tests
+     */
     @Test
-    public void shouldReturnWinners() {
+    public void shouldReturnWinnersRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {15, 5, 0, 0, 1, 0, 20, 2, 2};
 
         int[] actual = SpeedArrays.speedWinners(speeds);
         int[] expected = {0, 0, 0};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать скорости выигравших");
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать скорости выигравших");
     }
 
     @Test
-    public void shouldReturnWinnersIfNoOne() {
+    public void shouldReturnWinnersIfAllMoveRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {15, 5, 1, 3, 1, 4, 20, 2, 2};
 
         int[] actual = SpeedArrays.speedWinners(speeds);
         int[] expected = {};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать пустой массив скоростей выигравших");
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать пустой массив скоростей выигравших");
     }
 
     @Test
-    public void shouldReturnWinnersIfEveryOne() {
+    public void shouldReturnWinnersIfAllStayRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
         int[] actual = SpeedArrays.speedWinners(speeds);
         int[] expected = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать скорости всех игроков");
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать скорости всех игроков");
     }
 
     @Test
-    public void shouldReturnWinnersIfFirst() {
+    public void shouldReturnWinnersIfFirstStayRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {0, 5, 6, 1, 10, 2, 15, 2, 5};
 
         int[] actual = SpeedArrays.speedWinners(speeds);
         int[] expected = {0};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать скорости выигравших, " +
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать скорость выигравшего, " +
                 "если выигравший первый");
     }
 
     @Test
-    public void shouldReturnWinnersIfLast() {
+    public void shouldReturnWinnersIfLastStayRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {10, 9, 8, 3, 2, 4, 3, 5, 0};
 
         int[] actual = SpeedArrays.speedWinners(speeds);
         int[] expected = {0};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать скорости выигравших, " +
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать скорость выигравшего, " +
                 "если выигравший последний");
     }
 
     @Test
-    public void shouldReturnWinnersIfOne() {
+    public void shouldReturnWinnersIfOneStayRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {0};
 
         int[] actual = SpeedArrays.speedWinners(speeds);
         int[] expected = {0};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать массив из одной скорости, " +
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать массив из одной скорости, " +
                 "если игрок единственный и он выиграл");
     }
 
     @Test
-    public void shouldReturnWinnersIfOneLose() {
+    public void shouldReturnWinnersIfOneMoveRed() {
+        SpeedArrays.isGreenLight = false;
         int[] speeds = {5};
 
         int[] actual = SpeedArrays.speedWinners(speeds);
         int[] expected = {};
-        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать пустой массив, " +
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать пустой массив, " +
                 "если игрок единственный и он выбыл");
+    }
+
+    /*
+     * If light is green
+     * countLoser tests
+     */
+    @Test
+    public void shouldReturnCountOfLosersGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {15, 5, 0, 0, 1, 0, 20, 2, 2};
+
+        int actual = SpeedArrays.countLoser(speeds);
+        int expected = 0;
+        Assertions.assertEquals(expected, actual, "При зеленом свете метод должен возвращать нулевое количество выбывших");
+    }
+
+    @Test
+    public void shouldReturnCountOfLosersIfAllStayGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+        int actual = SpeedArrays.countLoser(speeds);
+        int expected = 0;
+        Assertions.assertEquals(expected, actual, "При зеленом свете метод должен возвращать нулевое количество выбывших");
+    }
+
+    @Test
+    public void shouldReturnCountOfLosersIfAllMoveGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {15, 5, 1, 3, 1, 4, 20, 2, 2};
+
+        int actual = SpeedArrays.countLoser(speeds);
+        int expected = 0;
+        Assertions.assertEquals(expected, actual, "При зеленом свете метод должен возвращать нулевое количество выбывших");
+    }
+
+    @Test
+    public void shouldReturnCountOfLosersIfOneMoveGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {1};
+
+        int actual = SpeedArrays.countLoser(speeds);
+        int expected = 0;
+        Assertions.assertEquals(expected, actual, "При зеленом свете метод должен возвращать нулевое количество выбывших");
+    }
+
+    @Test
+    public void shouldReturnCountOfLosersIfOneStayGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {0};
+
+        int actual = SpeedArrays.countLoser(speeds);
+        int expected = 0;
+        Assertions.assertEquals(expected, actual, "При зеленом свете метод должен возвращать нулевое количество выбывших");
+    }
+
+    /*
+     * speedLosers tests
+     */
+    @Test
+    public void shouldReturnLosersGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {15, 5, 0, 0, 1, 0, 20, 2, 2};
+
+        int[] actual = SpeedArrays.speedLosers(speeds);
+        int[] expected = {};
+        Assertions.assertArrayEquals(expected, actual, "При зеленом свете метод должен возвращать пустой массив");
+    }
+
+    @Test
+    public void shouldReturnLosersIfAllStayGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+        int[] actual = SpeedArrays.speedLosers(speeds);
+        int[] expected = {};
+        Assertions.assertArrayEquals(expected, actual, "При зеленом свете метод должен возвращать пустой массив");
+    }
+
+    @Test
+    public void shouldReturnLosersIfAllMoveGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {15, 5, 1, 3, 1, 4, 20, 2, 2};
+
+        int[] actual = SpeedArrays.speedLosers(speeds);
+        int[] expected = {};
+        Assertions.assertArrayEquals(expected, actual, "При зеленом свете метод должен возвращать пустой массив");
+    }
+
+    @Test
+    public void shouldReturnLosersIfOneMoveGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {1};
+
+        int[] actual = SpeedArrays.speedLosers(speeds);
+        int[] expected = {};
+        Assertions.assertArrayEquals(expected, actual, "При зеленом свете метод должен возвращать пустой массив");
+    }
+
+    @Test
+    public void shouldReturnLosersIfOneStayGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {0};
+
+        int[] actual = SpeedArrays.speedLosers(speeds);
+        int[] expected = {};
+        Assertions.assertArrayEquals(expected, actual, "При зеленом свете метод должен возвращать пустой массив");
+    }
+
+    /*
+     * speedWinners tests
+     */
+    @Test
+    public void shouldReturnWinnersGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {15, 5, 0, 0, 1, 0, 20, 2, 2};
+
+        int[] actual = SpeedArrays.speedWinners(speeds);
+        int[] expected = {15, 5, 0, 0, 1, 0, 20, 2, 2};
+        Assertions.assertArrayEquals(expected, actual, "При зеленом свете метод должен возвращать скорости всех игроков");
+    }
+
+    @Test
+    public void shouldReturnWinnersIfAllMoveGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {15, 5, 1, 3, 1, 4, 20, 2, 2};
+
+        int[] actual = SpeedArrays.speedWinners(speeds);
+        int[] expected =  {15, 5, 1, 3, 1, 4, 20, 2, 2};
+        Assertions.assertArrayEquals(expected, actual, "При зеленом свете метод должен возвращать скорости всех игроков");
+    }
+
+    @Test
+    public void shouldReturnWinnersIfAllStayGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+        int[] actual = SpeedArrays.speedWinners(speeds);
+        int[] expected = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        Assertions.assertArrayEquals(expected, actual, "При зеленом свете метод должен возвращать скорости всех игроков");
+    }
+
+    @Test
+    public void shouldReturnWinnersIfOneStayGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {0};
+
+        int[] actual = SpeedArrays.speedWinners(speeds);
+        int[] expected = {0};
+        Assertions.assertArrayEquals(expected, actual, "При зеленом свете метод должен возвращать скорости всех игроков");
+    }
+
+    @Test
+    public void shouldReturnWinnersIfOneMoveGreen() {
+        SpeedArrays.isGreenLight = true;
+        int[] speeds = {5};
+
+        int[] actual = SpeedArrays.speedWinners(speeds);
+        int[] expected = {5};
+        Assertions.assertArrayEquals(expected, actual, "При зеленом свете метод должен возвращать скорости всех игроков");
     }
 
 }
