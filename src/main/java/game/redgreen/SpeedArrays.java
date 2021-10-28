@@ -3,17 +3,19 @@ package game.redgreen;
 public class SpeedArrays {
 
     static boolean isGreenLight = false;
+    static int MAX_SPEED = 10;
 
     public static int countLoser(int[] speedOfPlayers) {
         int count = 0;
 
         if (!isGreenLight) {
             for (int speed : speedOfPlayers) {
-                if (speed != 0) {
+                if (speed > MAX_SPEED) {
                     count++;
                 }
             }
         }
+
         return count;
     }
 
@@ -27,7 +29,7 @@ public class SpeedArrays {
         if (count != 0) {
             for (int i = 0, j = 0; i < speedOfPlayers.length; i++) {
                 int speed = speedOfPlayers[i];
-                if (speed != 0) {
+                if (speed > MAX_SPEED) {
                     speedOfLosers[j++] = speed;
                 }
             }
@@ -42,10 +44,11 @@ public class SpeedArrays {
 
         int count = speedOfPlayers.length - countLoser(speedOfPlayers);
         int[] speedOfWinners = new int[count];
+
         if (count != 0) {
             for (int i = 0, j = 0; i < speedOfPlayers.length; i++) {
                 int speed = speedOfPlayers[i];
-                if (speed == 0) {
+                if (speed <= MAX_SPEED) {
                     speedOfWinners[j++] = speed;
                 }
             }
