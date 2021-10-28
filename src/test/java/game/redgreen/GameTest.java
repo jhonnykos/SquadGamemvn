@@ -10,42 +10,38 @@ public class GameTest {
      * If light is red
      */
     @Test
-    public void shouldCheckWinnerRed(){
+    public void shouldCheckWinnerRed() {
         Game.isGreenLight = false;
         int speed = 0;
 
         boolean actual = Game.isLoser(speed);
-
         Assertions.assertFalse(actual, "При красном свете метод должен возвращать false если игрок не двигается");
     }
 
     @Test
-    public void shouldCheckLoserRed(){
+    public void shouldCheckLoserRed() {
         Game.isGreenLight = false;
         int speed = 5;
 
         boolean actual = Game.isLoser(speed);
-
         Assertions.assertTrue(actual, "При красном свете метод должен возвращать true если игрок двигается");
     }
 
     @Test
-    public void shouldCheckIfNegativeRed(){
+    public void shouldCheckIfNegativeRed() {
         Game.isGreenLight = false;
         int speed = -5;
 
         boolean actual = Game.isLoser(speed);
-
         Assertions.assertTrue(actual, "При красном свете метод должен возвращать true если скорость отрицательная");
     }
 
     @Test
-    public void shouldCheckIfHighSpeedRed(){
+    public void shouldCheckIfHighSpeedRed() {
         Game.isGreenLight = false;
         int speed = 10000;
 
         boolean actual = Game.isLoser(speed);
-
         Assertions.assertTrue(actual, "При красном свете метод должен работать с большой скоростью");
     }
 
@@ -53,43 +49,38 @@ public class GameTest {
      * If light is green
      */
     @Test
-    public void shouldCheckWinnerGreen(){
+    public void shouldCheckWinnerGreen() {
         Game.isGreenLight = true;
         int speed = 0;
 
         boolean actual = Game.isLoser(speed);
-
         Assertions.assertFalse(actual, "При зеленом свете метод должен возвращать false если игрок не двигается");
     }
 
     @Test
-    public void shouldCheckLoserGreen(){
+    public void shouldCheckLoserGreen() {
         Game.isGreenLight = true;
         int speed = 5;
 
         boolean actual = Game.isLoser(speed);
-
         Assertions.assertFalse(actual, "При зеленом свете метод должен возвращать false если игрок двигается");
     }
 
     @Test
-    public void shouldCheckIfNegativeGreen(){
+    public void shouldCheckIfNegativeGreen() {
         Game.isGreenLight = true;
         int speed = -5;
 
         boolean actual = Game.isLoser(speed);
-
         Assertions.assertFalse(actual, "При зеленом свете метод должен возвращать false если скорость отрицательная");
     }
 
     @Test
-    public void shouldCheckIfHighSpeedGreen(){
+    public void shouldCheckIfHighSpeedGreen() {
         Game.isGreenLight = true;
         int speed = 10000;
 
         boolean actual = Game.isLoser(speed);
-
         Assertions.assertFalse(actual, "При зеленом свете метод должен работать с большой скоростью");
     }
-
 }
