@@ -660,7 +660,6 @@ public class SpeedArraysTest {
         Assertions.assertArrayEquals(expected, actual, "При зеленом свете метод должен возвращать скорости всех игроков");
     }
 
-
     @Test
     public void shouldReturnWinnersLBStayGreen() {
         SpeedArrays.isGreenLight = true;
@@ -703,5 +702,149 @@ public class SpeedArraysTest {
         int[] expected = {5, 5, 0, 5, 5, 5, 5};
         int[] actual = SpeedArrays.speedWinners(speeds);
         Assertions.assertArrayEquals(expected, actual, "При зеленом свете метод должен возвращать скорости всех игроков");
+    }
+
+    /*
+     * If light is red
+     * nameWinners tests
+     */
+    @Test
+    public void shouldReturnNamesWinnersRed() {
+        SpeedArrays.isGreenLight = false;
+        SpeedArrays.MAX_SPEED = 10;
+        String[] players = {"Olya 10", "Pavel 5", "Grisha 15", "Vasya 9", "Nastya 0", "Anya 20"};
+
+        String[] expected = {"Olya", "Pavel", "Vasya", "Nastya"};
+        String[] actual = SpeedArrays.nameWinners(players);
+        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать имена выигравших");
+    }
+
+    @Test
+    public void shouldReturnNamesWinnersIfAllMoveRed() {
+        SpeedArrays.isGreenLight = false;
+        SpeedArrays.MAX_SPEED = 10;
+        String[] players = {"Olya 15", "Pavel 25", "Grisha 15", "Vasya 19", "Nastya 11", "Anya 20"};
+
+        String[] expected = {};
+        String[] actual = SpeedArrays.nameWinners(players);
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать пустой массив имен выигравших");
+    }
+
+    @Test
+    public void shouldReturnNamesWinnersIfAllStayRed() {
+        SpeedArrays.isGreenLight = false;
+        SpeedArrays.MAX_SPEED = 10;
+        String[] players = {"Olya 5", "Pavel 0", "Grisha 1", "Vasya 9", "Nastya 9", "Anya 2"};
+
+        String[] expected = {"Olya", "Pavel", "Grisha", "Vasya", "Nastya", "Anya"};
+        String[] actual = SpeedArrays.nameWinners(players);
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать имена всех игроков");
+    }
+
+    @Test
+    public void shouldReturnNamesWinnersIfFirstStayRed() {
+        SpeedArrays.isGreenLight = false;
+        SpeedArrays.MAX_SPEED = 10;
+        String[] players = {"Olya 5", "Pavel 15", "Grisha 15", "Vasya 19", "Nastya 19", "Anya 11"};
+
+        String[] expected = {"Olya"};
+        String[] actual = SpeedArrays.nameWinners(players);
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать имя выигравшего, " +
+                "если выигравший первый");
+    }
+
+    @Test
+    public void shouldReturnNamesWinnersIfLastStayRed() {
+        SpeedArrays.isGreenLight = false;
+        SpeedArrays.MAX_SPEED = 10;
+        String[] players = {"Olya 15", "Pavel 11", "Grisha 11", "Vasya 19", "Nastya 19", "Anya 2"};
+
+        String[] expected = {"Anya"};
+        String[] actual = SpeedArrays.nameWinners(players);
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать имя выигравшего, " +
+                "если выигравший последний");
+    }
+
+    @Test
+    public void shouldReturnNamesWinnersIfOneStayRed() {
+        SpeedArrays.isGreenLight = false;
+        SpeedArrays.MAX_SPEED = 10;
+        String[] players = {"Olya 5"};
+
+        String[] expected = {"Olya"};
+        String[] actual = SpeedArrays.nameWinners(players);
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать массив из одного имени, " +
+                "если игрок единственный и он выиграл");
+    }
+
+    @Test
+    public void shouldReturnNamesWinnersIfOneMoveRed() {
+        SpeedArrays.isGreenLight = false;
+        SpeedArrays.MAX_SPEED = 10;
+        String[] players = {"Olya 15"};
+
+        String[] expected = {};
+        String[] actual = SpeedArrays.nameWinners(players);
+        Assertions.assertArrayEquals(expected, actual, "При красном свете метод должен возвращать пустой массив, " +
+                "если игрок единственный и он выбыл");
+    }
+
+    /*
+     * If light is green
+     * nameWinners tests
+     */
+    @Test
+    public void shouldReturnNamesWinnersGreen() {
+        SpeedArrays.isGreenLight = true;
+        SpeedArrays.MAX_SPEED = 10;
+        String[] players = {"Olya 10", "Pavel 5", "Grisha 15", "Vasya 9", "Nastya 0", "Anya 20"};
+
+        String[] expected = {"Olya", "Pavel", "Grisha", "Vasya", "Nastya", "Anya"};
+        String[] actual = SpeedArrays.nameWinners(players);
+        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать имена всех игроков");
+    }
+
+    @Test
+    public void shouldReturnNamesWinnersIfAllMoveGreen() {
+        SpeedArrays.isGreenLight = true;
+        SpeedArrays.MAX_SPEED = 10;
+        String[] players = {"Olya 15", "Pavel 15", "Grisha 15", "Vasya 19", "Nastya 20", "Anya 11"};
+
+        String[] expected = {"Olya", "Pavel", "Grisha", "Vasya", "Nastya", "Anya"};
+        String[] actual = SpeedArrays.nameWinners(players);
+        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать имена всех игроков");
+    }
+
+    @Test
+    public void shouldReturnNamesWinnersIfAllStayGreen() {
+        SpeedArrays.isGreenLight = true;
+        SpeedArrays.MAX_SPEED = 10;
+        String[] players = {"Olya 1", "Pavel 0", "Grisha 5", "Vasya 9", "Nastya 0", "Anya 10"};
+
+        String[] expected = {"Olya", "Pavel", "Grisha", "Vasya", "Nastya", "Anya"};
+        String[] actual = SpeedArrays.nameWinners(players);
+        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать имена всех игроков");
+    }
+
+    @Test
+    public void shouldReturnNamesWinnersIfOneStayGreen() {
+        SpeedArrays.isGreenLight = true;
+        SpeedArrays.MAX_SPEED = 10;
+        String[] players = {"Olya 7"};
+
+        String[] expected = {"Olya"};
+        String[] actual = SpeedArrays.nameWinners(players);
+        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать имена всех игроков");
+    }
+
+    @Test
+    public void shouldReturnNamesWinnersIfOneMoveGreen() {
+        SpeedArrays.isGreenLight = true;
+        SpeedArrays.MAX_SPEED = 10;
+        String[] players = {"Olya 17"};
+
+        String[] expected = {"Olya"};
+        String[] actual = SpeedArrays.nameWinners(players);
+        Assertions.assertArrayEquals(expected, actual, "Метод должен возвращать имена всех игроков");
     }
 }
