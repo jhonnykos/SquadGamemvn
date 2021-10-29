@@ -56,4 +56,25 @@ public class SpeedArrays {
 
         return speedOfWinners;
     }
+
+    public static String[] nameWinners(String[] playersInfo) {
+        String playersNames = "";
+
+        for (String player : playersInfo) {
+            String[] info = player.split(" ");
+            if (isGreenLight) {
+                playersNames += info[0] + " ";
+                continue;
+            }
+            int speed = Integer.parseInt(info[1]);
+            if (speed <= MAX_SPEED) {
+                playersNames += info[0] + " ";
+            }
+        }
+
+        if (playersNames.isEmpty()) return new String[0];
+
+        String[] names = playersNames.split(" ");
+        return names;
+    }
 }
