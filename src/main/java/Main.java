@@ -24,12 +24,12 @@ public class Main {
         }
 
         System.out.println("Всего выбыло " + loserCount + " игроков");
-
+        SpeedArrays speedArr = new SpeedArrays(false,10);
         int[] speeds = {15, 5, 0, 3, 0};
 
-        loserCount = SpeedArrays.countLoser(speeds);
-        int[] speedLosers = SpeedArrays.speedLosers(speeds);
-        int[] speedWinners = SpeedArrays.speedWinners(speeds);
+        loserCount = speedArr.countLoser(speeds);
+        int[] speedLosers = speedArr.speedLosers(speeds);
+        int[] speedWinners = speedArr.speedWinners(speeds);
 
         System.out.println("Среди " + speeds.length + " игроков: \n" +
                 "Выбыло " + loserCount + " игроков, осталось " + (speeds.length - loserCount) + " игроков \n" +
