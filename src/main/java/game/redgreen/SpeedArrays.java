@@ -2,10 +2,15 @@ package game.redgreen;
 
 public class SpeedArrays {
 
-    static boolean isGreenLight = false;
-    static int MAX_SPEED = 10;
+    public boolean isGreenLight;
+    public int MAX_SPEED;
 
-    public static int countLoser(int[] speedOfPlayers) {
+    public SpeedArrays(boolean isGreenLight, int maxSpeed){
+        this.isGreenLight = isGreenLight;
+        this.MAX_SPEED = maxSpeed;
+    }
+
+    public int countLoser(int[] speedOfPlayers) {
         int count = 0;
 
         if (!isGreenLight) {
@@ -20,7 +25,7 @@ public class SpeedArrays {
     }
 
 
-    public static int[] speedLosers(int[] speedOfPlayers) {
+    public int[] speedLosers(int[] speedOfPlayers) {
         if (isGreenLight) return new int[0];
 
         int count = countLoser(speedOfPlayers);
@@ -39,7 +44,7 @@ public class SpeedArrays {
     }
 
 
-    public static int[] speedWinners(int[] speedOfPlayers) {
+    public int[] speedWinners(int[] speedOfPlayers) {
         if (isGreenLight) return speedOfPlayers;
 
         int count = speedOfPlayers.length - countLoser(speedOfPlayers);
@@ -55,5 +60,26 @@ public class SpeedArrays {
         }
 
         return speedOfWinners;
+    }
+
+    public String[] nameWinners(String[] playersInfo) {
+        String playersNames = "";
+
+        for (String player : playersInfo) {
+            String[] info = player.split(" ");
+            if (isGreenLight) {
+                playersNames += info[0] + " ";
+                continue;
+            }
+            int speed = Integer.parseInt(info[1]);
+            if (speed <= MAX_SPEED) {
+                playersNames += info[0] + " ";
+            }
+        }
+
+        if (playersNames.isEmpty()) return new String[0];
+
+        String[] names = playersNames.split(" ");
+        return names;
     }
 }
