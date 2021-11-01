@@ -2,8 +2,6 @@ import game.redgreen.SpeedArrays;
 
 import java.util.Arrays;
 
-import static game.redgreen.Game.isLoser;
-
 public class Main {
     public static void main(String[] args) {
 
@@ -13,15 +11,15 @@ public class Main {
 
         int loserCount = 0;
 
-        if (isLoser(speedOfPlayer1)) {
-            loserCount++;
-        }
-        if (isLoser(speedOfPlayer2)) {
-            loserCount++;
-        }
-        if (isLoser(speedOfPlayer3)) {
-            loserCount++;
-        }
+//        if (isLoser(speedOfPlayer1)) {
+//            loserCount++;
+//        }
+//        if (isLoser(speedOfPlayer2)) {
+//            loserCount++;
+//        }
+//        if (isLoser(speedOfPlayer3)) {
+//            loserCount++;
+//        }
 
         System.out.println("Всего выбыло " + loserCount + " игроков");
         SpeedArrays speedArr = new SpeedArrays(false,10);
