@@ -1,15 +1,17 @@
 package game.redgreen;
 
+import lombok.Data;
+
+@Data
 public class Game {
+    private boolean isGreenLight;
 
-    static boolean isGreenLight = false;
-
-    public static boolean isLoser(int speedOfPlayer) {
-        if (!isGreenLight) {
-            if (speedOfPlayer != 0) {
-                return true;
-            }
-        }
-        return false;
+    public Game(boolean isGreenLight) {
+        this.isGreenLight = isGreenLight;
     }
+
+    boolean isFailed(int speed) {
+        return !isGreenLight && speed != 0;
+    }
+
 }

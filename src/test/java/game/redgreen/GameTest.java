@@ -1,86 +1,94 @@
 package game.redgreen;
 
-import game.redgreen.Game;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class GameTest {
+import static org.junit.jupiter.api.Assertions.*;
 
-    /*
-     * If light is red
-     */
-    @Test
-    public void shouldCheckWinnerRed() {
-        Game.isGreenLight = false;
-        int speed = 0;
-
-        boolean actual = Game.isLoser(speed);
-        Assertions.assertFalse(actual, "При красном свете метод должен возвращать false если игрок не двигается");
-    }
+class GameTest {
 
     @Test
-    public void shouldCheckLoserRed() {
-        Game.isGreenLight = false;
+    void shouldReturnFailMoveIfRed() {
+        Game game = new Game(false);
         int speed = 5;
-
-        boolean actual = Game.isLoser(speed);
-        Assertions.assertTrue(actual, "При красном свете метод должен возвращать true если игрок двигается");
+        boolean actual = game.isFailed(speed);
+        Assertions.assertTrue(actual, "Метод должен возвращать true если свет красный и игрок двигается");
     }
 
     @Test
-    public void shouldCheckIfNegativeRed() {
-        Game.isGreenLight = false;
-        int speed = -5;
-
-        boolean actual = Game.isLoser(speed);
-        Assertions.assertTrue(actual, "При красном свете метод должен возвращать true если скорость отрицательная");
-    }
-
-    @Test
-    public void shouldCheckIfHighSpeedRed() {
-        Game.isGreenLight = false;
-        int speed = 10000;
-
-        boolean actual = Game.isLoser(speed);
-        Assertions.assertTrue(actual, "При красном свете метод должен работать с большой скоростью");
-    }
-
-    /*
-     * If light is green
-     */
-    @Test
-    public void shouldCheckWinnerGreen() {
-        Game.isGreenLight = true;
+    void shouldReturnFailStayIfRed() {
+        Game game = new Game(false);
         int speed = 0;
-
-        boolean actual = Game.isLoser(speed);
-        Assertions.assertFalse(actual, "При зеленом свете метод должен возвращать false если игрок не двигается");
+        boolean actual = game.isFailed(speed);
+        Assertions.assertFalse(actual, "Метод должен возвращать false если свет красный и игрок стоит");
     }
 
     @Test
-    public void shouldCheckLoserGreen() {
-        Game.isGreenLight = true;
-        int speed = 5;
-
-        boolean actual = Game.isLoser(speed);
-        Assertions.assertFalse(actual, "При зеленом свете метод должен возвращать false если игрок двигается");
-    }
-
-    @Test
-    public void shouldCheckIfNegativeGreen() {
-        Game.isGreenLight = true;
-        int speed = -5;
-
-        boolean actual = Game.isLoser(speed);
-        Assertions.assertFalse(actual, "При зеленом свете метод должен возвращать false если скорость отрицательная");
-    }
-
-    @Test
-    public void shouldCheckIfHighSpeedGreen() {
-        Game.isGreenLight = true;
+    void shouldReturnFailStayIfHighRed() {
+        Game game = new Game(false);
         int speed = 10000;
+        boolean actual = game.isFailed(speed);
+        Assertions.assertTrue(actual, "Метод должен возвращать true если свет красный " +
+                "и игрок двигается с большой скоростью");
+    }
 
-        boolean actual = Game.isLoser(speed);
-        Assertions.assertFalse(actual, "При зеленом свете метод должен работать с большой скоростью");
+    @Test
+    void shouldReturnFailMoveIfGreen() {
+        Game game = new Game(true);
+        int speed = 5;
+        boolean actual = game.isFailed(speed);
+        Assertions.assertFalse(actual, "Метод должен возвращать false если свет зеленый");
+    }
+
+    @Test
+    void shouldReturnFailStayIfGreen() {
+        Game game = new Game(true);
+        int speed = 5;
+        boolean actual = game.isFailed(speed);
+        Assertions.assertFalse(actual, "Метод должен возвращать false если свет зеленый");
+    }
+
+    @Test
+    void shouldReturnFailStayIfGreenHigh() {
+        Game game = new Game(true);
+        int speed = 10000;
+        boolean actual = game.isFailed(speed);
+        Assertions.assertFalse(actual, "Метод должен возвращать false если свет зеленый");
+    }
+
+    @Test
+    void shouldReturnIsGreenLightTrue() {
+        Game game = new Game(true);
+        boolean actual = game.isGreenLight();
+        Assertions.assertTrue(actual, "Геттер должен возвращать true если в качестве параметра " +
+                "конструктора был передан true");
+    }
+
+    @Test
+    void shouldReturnIsGreenLightFalse() {
+        Game game = new Game(false);
+        boolean actual = game.isGreenLight();
+        Assertions.assertFalse(actual, "Геттер должен возвращать false если в качестве параметра " +
+                "конструктора был передан false");
+    }
+
+    @Test
+    void setGreenLightIfSame() {
+        boolean isGreenLight1 = true;
+        boolean isGreenLight2 = true;
+        Game game = new Game(isGreenLight1);
+        game.setGreenLight(isGreenLight2);
+        boolean actual = game.isGreenLight();
+        Assertions.assertTrue(actual, "Сеттер должен менять поле на то же самое");
+    }
+
+    @Test
+    void setGreenLightIfDiff() {
+        boolean isGreenLight1 = true;
+        boolean isGreenLight2 = false;
+        Game game = new Game(isGreenLight1);
+        game.setGreenLight(isGreenLight2);
+        boolean actual = game.isGreenLight();
+        Assertions.assertFalse(actual, "Сеттер должен менять поле на другое");
     }
 }
