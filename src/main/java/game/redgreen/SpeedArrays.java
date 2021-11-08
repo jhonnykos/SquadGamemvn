@@ -26,7 +26,9 @@ public class SpeedArrays {
 
 
     public int[] speedLosers(int[] speedOfPlayers) {
-        if (isGreenLight) return new int[0];
+        if (isGreenLight) {
+            return new int[0];
+        }
 
         int count = countLoser(speedOfPlayers);
         int[] speedOfLosers = new int[count];
@@ -45,7 +47,9 @@ public class SpeedArrays {
 
 
     public int[] speedWinners(int[] speedOfPlayers) {
-        if (isGreenLight) return speedOfPlayers;
+        if (isGreenLight) {
+            return speedOfPlayers;
+        }
 
         int count = speedOfPlayers.length - countLoser(speedOfPlayers);
         int[] speedOfWinners = new int[count];
@@ -77,7 +81,9 @@ public class SpeedArrays {
             }
         }
 
-        if (playersNames.isEmpty()) return new String[0];
+        if (playersNames.isEmpty()) {
+            return new String[0];
+        }
 
         String[] names = playersNames.split(" ");
         return names;
