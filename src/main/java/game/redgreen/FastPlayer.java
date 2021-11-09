@@ -1,8 +1,8 @@
 package game.redgreen;
 
 public class FastPlayer implements Movable{
-    int startSpeed;
-    int speedStep;
+    private int startSpeed;
+    private int speedStep;
 
     public FastPlayer(int startSpeed, int speedStep){
         this.speedStep = speedStep;

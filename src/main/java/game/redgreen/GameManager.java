@@ -20,7 +20,7 @@ public class GameManager {
         return count;
     }
 
-    int loser(Movable p1, Movable p2, Game game, int rounds) {
+    public int loser(Movable p1, Movable p2, Game game, int rounds) {
         if (game.isGreenLight()) {
             return 0;
         }
